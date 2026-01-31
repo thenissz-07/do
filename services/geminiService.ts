@@ -58,10 +58,12 @@ export const generateLessonContent = async (topic: string, description: string, 
         required: ["title", "contentBody", "learningFocus", "questions"]
       };
     } else if (skill === SkillType.WRITING) {
-      prompt = `Create a writing prompt about "${topic}". 
-      The prompt should ask the user to write 100-150 words.
-      Provide the prompt in 'contentBody'. 
-      In 'learningFocus', provide 3-5 useful linking words or vocabulary they should try to use.`;
+      prompt = `Create an essay writing prompt about "${topic}". 
+      The task is to write a short essay (120-180 words) with a clear Introduction, Body, and Conclusion.
+      Provide the specific essay question in 'contentBody'. 
+      In 'learningFocus', provide:
+      1. A recommended structure (e.g., "Para 1: Intro, Para 2: Example, Para 3: Conclusion")
+      2. 3-5 useful linking words (e.g., However, Furthermore, In conclusion).`;
       
       responseSchema = {
         type: Type.OBJECT,
@@ -152,12 +154,12 @@ export const gradeWriting = async (topic: string, userText: string) => {
   try {
     const modelId = 'gemini-3-flash-preview';
     const prompt = `Topic: ${topic}.
-    Student Submission: "${userText}".
+    Student Essay Submission: "${userText}".
     
-    Act as an English teacher. Grade this B1 level submission.
-    1. Give a score out of 100.
-    2. Provide corrected version.
-    3. Explain 2-3 key grammar or vocabulary mistakes.
+    Act as an English teacher grading a B1 level essay.
+    1. Score out of 100 based on Grammar, Vocabulary, and Structure/Flow.
+    2. Provide a corrected version of the essay.
+    3. Feedback: Specifically mention how well they followed essay structure (Intro/Body/Conclusion) and used linking words.
     
     Return JSON.`;
 
