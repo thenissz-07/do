@@ -1,0 +1,7 @@
+{
+  "name": "Ascend - A2 to B1 English",
+  "description": "A 30-day intensive English course powered by Gemini to take you from A2 to B1 proficiency through adaptive Speaking, Reading, Writing, and Listening exercises.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
